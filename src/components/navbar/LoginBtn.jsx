@@ -23,14 +23,17 @@ const LoginBtn = () =>{
             {/* for mobile devices */}
             <div className=" md:hidden w-5 h-4 flex flex-col justify-between cursor-pointer" 
                     onClick={() => setOpen(!open)}>
-                <div className="w-[100%] h-[2px] bg-black"> </div>
-                <div className="w-[100%] h-[2px] bg-black"> </div>
-                <div className="w-[100%] h-[2px] bg-black"> </div>
+                <div className={`w-[100%] h-[2px] 
+                    ${theme==="light"? "bg-black" : "bg-white"} `}> </div>
+                <div className={`w-[100%] h-[2px] 
+                    ${theme==="light"? "bg-black" : "bg-white"} `}> </div>
+                <div className={`w-[100%] h-[2px] 
+                    ${theme==="light"? "bg-black" : "bg-white"} `}> </div>
             </div>
 
             {open && 
-                <div className= {`absolute w-screen h-screen flex gap-8 flex-col top-[80px] 
-                    ${theme==="light"? 'bg-white text-black' : 'bg-black text-white'} left-0 items-center pt-6 text-2xl `}> 
+                <div className= {`absolute w-screen h-[100%] flex gap-6 flex-col top-[80px] z-10
+                    ${theme==="light"? 'bg-white text-black' : 'bg-black text-white'} left-0  items-center pt-20 text-2xl `}> 
                     <Link href="/"> <li> Homepage </li> </Link>
                     <Link href='/'> <li> About </li> </Link>
                     <Link href='/'> <li> Contact </li> </Link>
