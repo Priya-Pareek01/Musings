@@ -6,7 +6,7 @@ import { FaFacebookSquare } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <div className=" flex pb-[70px] justify-center mt-20 w-screen text-gray-600 md:flex-row flex-col md:gap-0 gap-4">
+        <div className=" flex pb-[10px] justify-center mt-20 w-screen text-gray-600 md:flex-row flex-col md:gap-0 gap-4">
             <div className="flex-1 text-center flex flex-col items-center">
                 <h1 className="text-xs md:text-lg font-bold"> Mu$!ng$ </h1>
                 <p className="md:w-[400px] md:text-xs text-[8px] md:my-2 my-1 w-[200px] md:pl-24"> Lorem ipsum doloripsum amet dolor dolor amet dolor c sit quaerat nemo earum voluptates</p>

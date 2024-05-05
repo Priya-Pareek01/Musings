@@ -12,11 +12,11 @@ const LoginBtn = () =>{
     return(
         <>
             {status==="NotAuthenticated" ? (
-                <Link href="/Login"  className= "md:inline-block hidden"> Login </Link>
+                <Link href="/login"  className= "md:inline-block hidden"> Login </Link>
             ) : ( 
                 <>
-                <Link href="/Write" className= "md:inline-block hidden"> Write </Link>
-                <Link href="/Logout" className= "md:inline-block hidden"> LogOut</Link>
+                <Link href="/write" className= "md:inline-block hidden"> Write </Link>
+                <Link href="/logout" className= "md:inline-block hidden"> LogOut</Link>
                 </>
             )}
 
@@ -38,11 +38,11 @@ const LoginBtn = () =>{
                     <Link href='/'> <li> About </li> </Link>
                     <Link href='/'> <li> Contact </li> </Link>
                     {status==="NotAuthenticated" ? (
-                    <Link href="/Login"> Login </Link>
+                    <Link href="/login"> Login </Link>
                     ) : (
                     <>
-                    <Link href="/Write"> Write </Link>
-                    <Link href="/Logout"> LogOut</Link>
+                    <Link href="/write"> Write </Link>
+                    <Link href="/logout"> LogOut</Link>
                     </>
                     )}
                 </div>

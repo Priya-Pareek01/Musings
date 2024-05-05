@@ -4,6 +4,7 @@
 
 body{
   background: #fff7f7;
+  width: 100%;
   color: rgb(23, 15, 15);
   box-sizing: border-box;
   padding: 0;
@@ -17,7 +18,7 @@ body{
 }
 
 .dark{
-  background-color: rgb(12, 12, 12);
+  background-color: #050d1c;
   color: white;
 }
 
@@ -52,3 +53,11 @@ body{
   color: black;
 }
 
+.ql-container{
+  font-size: 18px !important;
+  width: 100% !important;
+}
+
+.quill > .ql-container > .ql-editor.ql-blank::before{
+    color: #b3b3b1;
+}
