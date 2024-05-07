@@ -7,14 +7,30 @@ import { FiUpload } from "react-icons/fi";
 import { FaImages } from "react-icons/fa";
 import { MdVideoLibrary } from "react-icons/md";
 import { ThemeContext } from "@/context/ThemeContext";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const Write = () =>{
+    const {status} = useSession();
+    const router = useRouter();
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState("");
     const [titleValue, setTitleValue] = useState("");
     const{theme} = useContext(ThemeContext);
+
+    if(status === "loading"){
+        return(
+            <div> LOADING... </div>
+        );
+    }
+
+    if(status === "unauthenticated"){
+        console.log(status);
+        router.push("/login");
+    }
+
 
     return(
         <div className="flex flex-col  pt-10 md:ml-[220px] relative h-[100vh]">
@@ -22,13 +38,12 @@ const Write = () =>{
                 className="p-[25px] placeholder:text-4xl bg-transparent 
                  outline-none"/> 
 
-            <div className={`flex gap-5 items-center absolute z-50 top-[100px] left-[-37px] p-2
-                ${theme==="light"? "bg-[#fff7f7]" : "bg-[#050d1c]"}`}>
+            <div className="writePageItems">
                 <button onClick={() => setOpen(!open)}>
                     <IoIosAddCircleOutline className="h-8 w-8 text-[#b3b3b1]"/>
                 </button>
 
-                {open && <div className="flex gap-3">
+                {open && <div className="flex gap-2">
                     <button className="border rounded-[50%] p-[6px] border-[#1a8917]"> 
                         <FaImages className="h-4 w-4 text-[#b3b3b1]"/>
                     </button>

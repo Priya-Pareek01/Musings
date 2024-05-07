@@ -1,48 +1,51 @@
 "use client"
 
 import { ThemeContext } from "@/context/ThemeContext";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useContext, useState } from "react";
 
 const LoginBtn = () =>{
-    const status = "NotAuthenticated";
+    const {status} = useSession();
     const [open, setOpen] = useState(false);
-    const {theme, toggle} = useContext(ThemeContext);
+    const {theme} = useContext(ThemeContext);
 
     return(
+        
         <>
-            {status==="NotAuthenticated" ? (
+            {status==="unauthenticated" ? (
                 <Link href="/login"  className= "md:inline-block hidden"> Login </Link>
             ) : ( 
                 <>
                 <Link href="/write" className= "md:inline-block hidden"> Write </Link>
-                <Link href="/logout" className= "md:inline-block hidden"> LogOut</Link>
+                <Link href="/logout" className= "md:inline-block hidden"
+                    onClick={signOut}> LogOut</Link>
                 </>
             )}
 
             {/* for mobile devices */}
-            <div className=" md:hidden w-5 h-4 flex flex-col justify-between cursor-pointer" 
+            <div className=" md:hidden w-5 h-4 flex flex-col justify-between cursor-pointer " 
                     onClick={() => setOpen(!open)}>
-                <div className={`w-[100%] h-[2px] 
-                    ${theme==="light"? "bg-black" : "bg-white"} `}> </div>
-                <div className={`w-[100%] h-[2px] 
-                    ${theme==="light"? "bg-black" : "bg-white"} `}> </div>
-                <div className={`w-[100%] h-[2px] 
-                    ${theme==="light"? "bg-black" : "bg-white"} `}> </div>
+                <div className={`w-[100%] h-[2px]
+                    ${theme === "light" ? "bg-black" : (theme === "dark" ? "bg-white" : "bg-black")} `}> </div>
+                <div className={`w-[100%] h-[2px]
+                    ${theme === "light" ? "bg-black" : (theme === "dark" ? "bg-white" : "bg-black")} `}> </div>
+                <div className={`w-[100%] h-[2px]
+                    ${theme === "light" ? "bg-black" : (theme === "dark" ? "bg-white" : "bg-black")} `}> </div>
             </div>
 
             {open && 
                 <div className= {`absolute w-screen h-[100%] flex gap-6 flex-col top-[80px] z-10
-                    ${theme==="light"? 'bg-white text-black' : 'bg-black text-white'} left-0  items-center pt-20 text-2xl `}> 
+                    ${theme==="light"? 'bg-white text-[#050d1c]' : (theme ==="dark"? 'bg-[#050d1c] text-white': 'bg-white text-[#050d1c]')} left-0  items-center pt-20 text-2xl `}> 
                     <Link href="/"> <li> Homepage </li> </Link>
                     <Link href='/'> <li> About </li> </Link>
                     <Link href='/'> <li> Contact </li> </Link>
-                    {status==="NotAuthenticated" ? (
+                    {status==="unauthenticated" ? (
                     <Link href="/login"> Login </Link>
                     ) : (
                     <>
                     <Link href="/write"> Write </Link>
-                    <Link href="/logout"> LogOut</Link>
+                    <Link href="/logout" onClick={signOut}> LogOut</Link>
                     </>
                     )}
                 </div>

@@ -61,3 +61,24 @@ body{
 .quill > .ql-container > .ql-editor.ql-blank::before{
     color: #b3b3b1;
 }
+
+.writePageItems{
+  display: flex;
+  gap: 20px;
+  align-items: center; 
+  position: absolute; 
+  z-index: 999; 
+  top: 110px; 
+  left: -35px;
+  padding: 5px;
+  background-color: #fff7f7;
+}
+
+.light .writePageItems{
+  background-color: #fff7f7;
+ 
+}
+
+.dark .writePageItems{
+  background-color: #050d1c;
+}
