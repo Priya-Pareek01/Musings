@@ -3,13 +3,14 @@ import Featured from "@/components/hero/Featured";
 import CardList from "@/components/hero/CardList";
 import Menu from "@/components/hero/Menu";
 
-export default function Home() {
+export default function Home({searchParams}) {
+    const page = parseInt(searchParams.page) || 1;
   return (
     <div>
       <Featured />
       <CategoryList />
         <div className="flex w-screen my-14 gap-12">
-          <CardList />
+          <CardList  page={page}/>
           <Menu />
         </div>
      </div>

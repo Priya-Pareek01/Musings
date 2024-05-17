@@ -1,4 +1,3 @@
-import logo from '@/components/thumbnails/logo.png';
 import Image from 'next/image';
 import Link from 'next/link';
 import ThemeToggle from './ThemeToggle';
@@ -8,7 +7,7 @@ const Navbar = () => {
     return (
         <div className="flex justify-between items-center  w-screen pl-1 md:pr-10 pr-4">
             {/* <div className='md:w-[150px] w-[80px]'>
-                <Image src={logo} alt="Logo" objectFit="contain" height={100} width={150} className='pt-1'/>    
+                <Image src="/logo.png" alt="Logo" objectFit="contain" height={100} width={150} className='pt-1'/>    
             </div>  */}
             <div>
                 <h1 className="logoName"> Mu$!ng$ </h1>

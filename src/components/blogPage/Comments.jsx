@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Kerla from "@/components/thumbnails/kerlaImg.png"
 
 const Comments = () =>{
     return(
@@ -14,7 +13,7 @@ const Comments = () =>{
             <div>
                 <div className="flex flex-col gap-2 pt-8">
                     <div className="flex items-center gap-2">
-                        <Image src={Kerla} alt="profile" className="w-7 h-7 rounded-[50%]"/>
+                        <Image src="/kerlaImg.png" height={500} width={500} alt="profile" className="w-7 h-7 rounded-[50%]"/>
                         <div>
                             <p className="text-xs pb-1"> Priya pareek </p>
                             <p className="text-[8px]">22.02.2022</p>
@@ -25,7 +24,7 @@ const Comments = () =>{
 
                 <div className="flex flex-col gap-2 pt-8">
                     <div className="flex items-center gap-2">
-                        <Image src={Kerla} alt="profile" className="w-7 h-7 rounded-[50%]"/>
+                        <Image src="/kerlaImg.png" height={500} width={500} alt="profile" className="w-7 h-7 rounded-[50%]"/>
                         <div >
                             <p className="text-xs pb-1"> Priya pareek </p>
                             <p className="text-[8px]">22.02.2022</p>
@@ -36,7 +35,7 @@ const Comments = () =>{
 
                 <div className="flex flex-col gap-2 pt-8">
                     <div className="flex items-center gap-2">
-                        <Image src={Kerla} alt="profile" className="w-7 h-7 rounded-[50%]"/>
+                        <Image src="/kerlaImg.png" height={500} width={500} alt="profile" className="w-7 h-7 rounded-[50%]"/>
                         <div>
                             <p className="text-xs pb-1"> Priya pareek </p>
                             <p className="text-[8px]">22.02.2022</p>
@@ -47,7 +46,7 @@ const Comments = () =>{
 
                 <div className="flex flex-col gap-2 pt-8">
                     <div className="flex items-center gap-2">
-                        <Image src={Kerla} alt="profile" className="w-7 h-7 rounded-[50%]"/>
+                        <Image src="/kerlaImg.png" height={500} width={500} alt="profile" className="w-7 h-7 rounded-[50%]"/>
                         <div>
                             <p className="text-xs pb-1"> Priya pareek </p>
                             <p className="text-[8px]">22.02.2022</p>
@@ -58,7 +57,7 @@ const Comments = () =>{
 
                 <div className="flex flex-col gap-2 pt-8">
                     <div className="flex items-center gap-2">
-                        <Image src={Kerla} alt="profile" className="w-7 h-7 rounded-[50%]"/>
+                        <Image src="/kerlaImg.png" height={500} width={500} alt="profile" className="w-7 h-7 rounded-[50%]"/>
                         <div>
                             <p className="text-xs pb-1"> Priya pareek </p>
                             <p className="text-[8px]">22.02.2022</p>

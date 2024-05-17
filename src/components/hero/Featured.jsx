@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import kerla from '@/components/thumbnails/kerlaImg.png'
 
 const Featured = () =>{
     return(
@@ -16,7 +15,7 @@ const Featured = () =>{
             </div>
 
             <div className='flex md:my-8 my-4 relative md:flex-row flex-col items-center gap-4' >
-                <div className='md:w-96 w-52'> <Image src={kerla} alt="kerla" width={500}/>  </div>
+                <div className='md:w-96 w-52'> <Image src='/kerlaImg.png' alt="kerla" width={500} height={500}/>  </div>
                 <div className= 'my-auto md:w-80 w-48 text-xs flex-1'>
                     <h1 className='font-semibold text-xs md:text-sm mb-4'>Lorem ipsum dolor sit Minima cupid architecto nisi aperiam!</h1>
                     <p className='mb-4 md:inline-block hidden'> Lorem ipsum odit molestiae alias blanditiis praesentium et a  dolor sit  quo, similique odit molestiae alias blanditiis praesentium et a sapiente distinctio, debitis maxime. Incidunt doloribus maiores assumenda!</p>
