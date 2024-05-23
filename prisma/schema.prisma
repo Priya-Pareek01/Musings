@@ -64,7 +64,6 @@ model Category {
 
 model Post {
   id        String    @id @default(cuid()) @map("_id")
-  
   slug      String    @unique
   title     String
   desc      String
@@ -75,6 +74,7 @@ model Post {
   userEmail String
   user      User?      @relation(fields: [userEmail], references: [email])
   comments  Comment[]
+  createdAt DateTime @default(now())
 }
 
 model Comment {

@@ -1,6 +1,6 @@
 import prisma from "@/utils/connect";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import NextAuth from "next-auth"
+import NextAuth, { getServerSession } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 
 export const authOptions = {
@@ -13,5 +13,7 @@ export const authOptions = {
   ],
 }
 const handler = NextAuth(authOptions);
+
+export const getAuthSession = () => getServerSession(authOptions);
 
 export {handler as GET, handler as POST};

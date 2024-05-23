@@ -5,6 +5,7 @@ import Menu from "@/components/hero/Menu";
 
 export default function Home({searchParams}) {
     const page = parseInt(searchParams.page) || 1;
+    const {cat} = searchParams;
   return (
     <div>
       <Featured />
