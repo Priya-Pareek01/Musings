@@ -10,6 +10,8 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { app } from "@/utils/firebase";
+import { useCategoryItems } from "@/components/hooks/useCategoryItems";
+import Modals from "@/components/Modals";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -23,7 +25,22 @@ const Write = () =>{
     const [file , setFile] = useState("");
     const [media, setMedia] = useState("");
     const storage = getStorage(app);
+    const [catValue, SetCatValue] = useState("");
+    const [categories, setCategories] = useState(null);
 
+    const [isDialogboxOpen, setIsDialogboxOpen] = useState(false);
+    const [dialogBoxValue, setDialogBoxValue] = useState(null);
+    const [imgUploadTxt, setImgUploadTxt] = useState(null);
+
+    useEffect(() =>{
+        const fetchcategories = async()=>{
+            const cat =  await useCategoryItems();
+            setCategories(cat);
+        }
+        fetchcategories();
+    },[])
+
+        
     useEffect(() =>{
         const Upload = () => { 
             const name = new Date().getTime() + file.name;
@@ -50,6 +67,8 @@ const Write = () =>{
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                         console.log('File available at', downloadURL);
+                        setImgUploadTxt("Image uploaded successfully!");
+                        setIsDialogboxOpen(true);
                         setMedia(downloadURL);
                 });
             }
@@ -60,26 +79,29 @@ const Write = () =>{
 
     }, [file])
 
-    const slugify = (str) =>
-        str
-            .toLowerCase()
-            .trim()
-            .replace(/[^\w\s-]/g, "")
-            .replace(/[\s_-]+/g, "-")
-            .replace(/^-+|-+$/g, "");
-
     const handleSubmit= async() =>{
         const res = await fetch("/api/posts", {
             method: "POST",
             body: JSON.stringify({
                 desc: value,
                 img: media,
-                slug: slugify(titleValue),
                 title: titleValue,
-                catSlug: "coding",
+                catSlug: catValue.trim(),
+                slug: `${titleValue.toLowerCase().replace(/\s+/g, '-')}-${Date.now()}`, 
             })
         });
+
+        setIsDialogboxOpen(true);
+        
+        if(res.ok){
+            setDialogBoxValue("Successfully Published!");
+            router.refresh();
+            router.push("/")
+        }else{
+            setDialogBoxValue("Sorry! Something went wrong.. ");
+        }
     }
+
 
     if(status === "loading"){
         return(
@@ -90,10 +112,23 @@ const Write = () =>{
     if(status === "unauthenticated"){
         router.push("/login");
     }
-
     return(
-        <div className="flex flex-col  pt-10 md:ml-[220px] relative h-[100vh]">
-            <input type="text"  placeholder="Title" onChange={(e) => setTitleValue(e.target.value)} value={titleValue}
+        <div className="flex flex-col  pt-10 md:ml-[220px] relative  ">
+
+            <select className="outline-none text-[#9c9c99] ml-4 md:p-2 p-1 w-fit rounded-md bg-[#da85c731] capitalize"
+                    onChange={(e) => SetCatValue(e.target.value)}>
+                    <option  defaultValue={"-Select category-"} disabled selected hidden>
+                        -Select category-
+                    </option>
+                {categories && categories.map((item) => (
+                    <option key={item?._id} value={item?.slug} > {item.slug} </option>
+                ))}
+            </select>
+
+            <input type="text"  placeholder="Title" onChange={(e) =>{
+                    e.preventDefault;
+                    setTitleValue(e.target.value);
+                    }} value={titleValue}
                 className="p-[25px] text-4xl bg-transparent 
                  outline-none"/> 
 
@@ -102,12 +137,13 @@ const Write = () =>{
                     <IoIosAddCircleOutline className="h-8 w-8 text-[#b3b3b1]"/>
                 </button>
 
-                {open && <div className="flex gap-2">
+                {open && 
+                <div className="flex gap-2 ">
                     <input type="file" id="image" 
                         onChange={(e) => setFile(e.target.files[0])} 
                         className="hidden" />
 
-                    <button className="border rounded-[50%] p-[6px] border-[#1a8917]"> 
+                    <button className="border rounded-[50%] p-[6px]  border-[#1a8917]"> 
                         <label htmlFor="image">
                             <FaImages className="h-4 w-4 text-[#b3b3b1]"/>
                         </label>
@@ -123,7 +159,7 @@ const Write = () =>{
                 </div>}
 
             </div>
-            <div>
+            <div className="ml-10 md:ml-0">
                 <ReactQuill theme="bubble" value={value} onChange={setValue} placeholder="Tell your story.."/>
             </div>
             
@@ -131,6 +167,15 @@ const Write = () =>{
                     onClick={handleSubmit}> 
                     Publish 
                 </button>
+
+                <Modals isDialogboxOpen= {isDialogboxOpen} onRequestClose={() => (setIsDialogboxOpen(false),
+                                                                                setDialogBoxValue(" "))} 
+                                                                                showCloseBtn={true}>
+                    <h1 className="py-1 text-green-800 font-semibold text-base">
+                        {dialogBoxValue? dialogBoxValue : imgUploadTxt }
+                    </h1>
+                </Modals>
+
         </div>
     );
 }

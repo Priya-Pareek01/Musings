@@ -1,6 +1,15 @@
 import Image from 'next/image';
+import { usePosts } from '../hooks/usePosts';
+import htmlTruncate from 'html-truncate';
+import Link from 'next/link';
 
-const Featured = () =>{
+const truncateHtmlContent = (html, maxLength) => {
+    return htmlTruncate(html, maxLength, { ellipsis: '...' });
+};
+
+const Featured = async() =>{
+    const {posts} = await usePosts(1, "culture");
+     
     return(
         <div className='flex flex-col items-center w-screen m-auto'>
             <div> 
@@ -14,14 +23,20 @@ const Featured = () =>{
                 </h1>
             </div>
 
-            <div className='flex md:my-8 my-4 relative md:flex-row flex-col items-center gap-4' >
-                <div className='md:w-96 w-52'> <Image src='/kerlaImg.png' alt="kerla" width={500} height={500}/>  </div>
-                <div className= 'my-auto md:w-80 w-48 text-xs flex-1'>
-                    <h1 className='font-semibold text-xs md:text-sm mb-4'>Lorem ipsum dolor sit Minima cupid architecto nisi aperiam!</h1>
-                    <p className='mb-4 md:inline-block hidden'> Lorem ipsum odit molestiae alias blanditiis praesentium et a  dolor sit  quo, similique odit molestiae alias blanditiis praesentium et a sapiente distinctio, debitis maxime. Incidunt doloribus maiores assumenda!</p>
-                    <buttom className='readMoreBtn'> Read more..</buttom>
+            {posts &&  posts.filter(item => item.title.toLowerCase().includes("Indian Culture and Tradition".toLowerCase())).map((item) =>(
+                <div className='flex md:my-8 my-4 relative md:flex-row flex-col items-center gap-6' key={item.id} >
+                    <div className='md:w-96 w-52'> 
+                        <Image src={item?.img} alt='image' width={500} height={500} priority={true}/>  
+                    </div>
+
+                    <div className= 'my-auto md:w-80 w-48 text-xs flex-1'>
+                        <p className='font-semibold text-xs md:text-xl mb-4'> {item.title} </p>
+                        <div dangerouslySetInnerHTML={{ __html: truncateHtmlContent(item?.desc || '', 390)}} className='mb-4 md:inline-block text-xs' />
+                        <Link href={`posts/${item.slug}`} className="bg-gray-400 rounded-[8%] p-[6px] color: black"> Read more..</Link>
+                    </div>
                 </div>
-            </div>
+            ))}
+
         </div>
     )
 }

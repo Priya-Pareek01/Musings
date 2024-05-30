@@ -2,32 +2,6 @@ import prisma from "@/utils/connect";
 import { NextResponse } from "next/server";
 import { getAuthSession } from "../auth/[...nextauth]/route";
 
-export const GET = async(req) =>{
-    const {searchParams} = new URL(req.url);
-    const page = searchParams.get("page")
-    const cat = searchParams.get("cat")
-    const post_per_page = 2;
-
-    const query = {
-        take: post_per_page,
-        skip: post_per_page * (page-1),
-        where: {
-            ...(cat && {catSlug: cat}),
-        },
-    };
-
-    try{
-        const [posts, count] = await prisma.$transaction([
-            prisma.post.findMany(query),
-            prisma.post.count({where:query.where}),
-        ]);
-        return new NextResponse(JSON.stringify({posts, count}));
-
-    }catch(error) {
-        return new NextResponse(JSON.stringify({message: "can't fetch posts"}))
-    }
-}
-
 export const POST = async (req) =>{
     const session = await getAuthSession();
 
@@ -47,3 +21,36 @@ export const POST = async (req) =>{
         return NextResponse.json({mssage: err.message});
     }
 }
+
+export const GET = async (req) => {
+    const { searchParams } = new URL(req.url);
+    const page = parseInt(searchParams.get("page") || "1", 10);
+    const cat = searchParams.get("cat");
+    const post_per_page = 4;
+
+    const trimmedCat = cat ? cat.trim() : null;
+
+    const query = {
+        take: post_per_page,
+        skip: post_per_page * (page - 1),
+        where: {
+            ...(trimmedCat && { catSlug: trimmedCat }),
+        },
+        include: {user: true},
+    };
+
+    try {
+        const [posts, count] = await prisma.$transaction([
+            prisma.post.findMany(query),
+            prisma.post.count({ where: query.where }),
+        ]);
+
+        return new NextResponse(JSON.stringify({ posts, count }));
+
+    } catch (error) {
+        console.error("Error fetching posts:", error);
+        return new NextResponse(JSON.stringify({ message: "Can't fetch posts", error: error.message }), { status: 500 });
+    }
+};
+
+

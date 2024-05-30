@@ -1,9 +1,18 @@
+
 import CardList from "@/components/hero/CardList";
 import Menu from "@/components/hero/Menu";
+// import { useRouter } from "next/navigation";
+// import { useSession } from "next-auth/react";
 
 const Blog =  ({searchParams})=>{
+    // const {status} = useSession();
     const page = parseInt(searchParams.page) || 1;
     const {cat} = searchParams;
+    // const router = useRouter();
+
+    // if(status=== "unauthenticated"){
+    //     router.push("/login");
+    // }
 
     return(
         <div className="w-screen"> 
@@ -11,7 +20,7 @@ const Blog =  ({searchParams})=>{
                 {cat} Blogs </h1>
             <div className="flex w-screen my-14  gap-12">
                 <CardList page={page} cat= {cat}/>
-                <Menu />
+                <Menu isAdd={true}/>
             </div>
         </div>
     );

@@ -18,7 +18,7 @@ const LoginBtn = () =>{
             ) : ( 
                 <>
                 <Link href="/write" className= "md:inline-block hidden"> Write </Link>
-                <Link href="/logout" className= "md:inline-block hidden"
+                <Link href="/" className= "md:inline-block hidden"
                     onClick={signOut}> LogOut</Link>
                 </>
             )}
@@ -45,7 +45,7 @@ const LoginBtn = () =>{
                     ) : (
                     <>
                     <Link href="/write"> Write </Link>
-                    <Link href="/logout" onClick={signOut}> LogOut</Link>
+                    <Link href="/" onClick={signOut}> LogOut</Link>
                     </>
                     )}
                 </div>

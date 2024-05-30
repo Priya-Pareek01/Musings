@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 
 const Pagination = ({page, hasPrev, hasNext}) =>{
     const router = useRouter();
+    
     return(
         <div className="flex justify-between text-xs text-white">
             <button className="bg-red-600 py-2 px-4 disabled:bg-red-800 disabled:cursor-not-allowed"
