@@ -14,12 +14,12 @@ const Featured = async() =>{
         <div className='flex flex-col items-center w-screen m-auto'>
             <div> 
                 <h1 className="font-bold pt-12 text-4xl leading-[44px] md:inline-block hidden"> Hey, Priya here! 
-                    <span className="font-normal px-auto md:text-3xl text-sm"> Discover my stories and unique <br/> ideas.. </span> 
+                    <span className="font-normal px-auto md:text-3xl text-sm"> Discover my stories and unique <br/> ideas or start writing your own today. </span> 
                 </h1>
 
                 {/* for mobile devices */}
-                <h1 className="font-bold pt-14 text-2xl leading-5 md:hidden text-center"> Hey, Priya here! 
-                    <span className="font-normal px-auto md:text-3xl text-lg"> Discover <br/> my stories and unique ideas.. </span> 
+                <h1 className="font-bold pt-14 text-2xl leading-5 md:hidden text-center px-6"> Hey, Priya here! 
+                    <span className="font-normal text-lg"> Discover  my stories and unique ideas or start writing your own today. </span> 
                 </h1>
             </div>
 
@@ -29,10 +29,11 @@ const Featured = async() =>{
                         <Image src={item?.img} alt='image' width={500} height={500} priority={true}/>  
                     </div>
 
-                    <div className= 'my-auto md:w-80 w-48 text-xs flex-1'>
-                        <p className='font-semibold text-xs md:text-xl mb-4'> {item.title} </p>
-                        <div dangerouslySetInnerHTML={{ __html: truncateHtmlContent(item?.desc || '', 390)}} className='mb-4 md:inline-block text-xs' />
-                        <Link href={`posts/${item.slug}`} className="bg-gray-400 rounded-[8%] p-[6px] color: black"> Read more..</Link>
+                    <div className= 'my-auto w-80 text-xs flex-1 text-center'>
+                        <p className='font-semibold text-base md:text-xl mb-4'> {item.title} </p>
+                        <div dangerouslySetInnerHTML={{ __html: truncateHtmlContent(item?.desc || '', 200)}} 
+                            className='mb-5 md:inline-block text-xs mx-5  ' />
+                        <Link href={`posts/${item.slug}`} className="bg-gray-400 rounded-[8%] p-[6px] "> Read more..</Link>
                     </div>
                 </div>
             ))}

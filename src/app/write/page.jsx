@@ -51,7 +51,6 @@ const Write = () =>{
             uploadTask.on('state_changed', 
             (snapshot) => {
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
                 switch (snapshot.state) {
                     case 'paused':
                         console.log('Upload is paused');
@@ -66,7 +65,6 @@ const Write = () =>{
             }, 
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                        console.log('File available at', downloadURL);
                         setImgUploadTxt("Image uploaded successfully!");
                         setIsDialogboxOpen(true);
                         setMedia(downloadURL);
@@ -129,7 +127,7 @@ const Write = () =>{
                     e.preventDefault;
                     setTitleValue(e.target.value);
                     }} value={titleValue}
-                className="p-[25px] text-4xl bg-transparent 
+                className="p-[25px] md:text-4xl text-2xl bg-transparent 
                  outline-none"/> 
 
             <div className="writePageItems">
@@ -159,7 +157,7 @@ const Write = () =>{
                 </div>}
 
             </div>
-            <div className="ml-10 md:ml-0">
+            <div className="pl-10 md:ml-0">
                 <ReactQuill theme="bubble" value={value} onChange={setValue} placeholder="Tell your story.."/>
             </div>
             
@@ -168,6 +166,7 @@ const Write = () =>{
                     Publish 
                 </button>
 
+                <div className="md:inline-block hidden">
                 <Modals isDialogboxOpen= {isDialogboxOpen} onRequestClose={() => (setIsDialogboxOpen(false),
                                                                                 setDialogBoxValue(" "))} 
                                                                                 showCloseBtn={true}>
@@ -175,6 +174,7 @@ const Write = () =>{
                         {dialogBoxValue? dialogBoxValue : imgUploadTxt }
                     </h1>
                 </Modals>
+                </div>
 
         </div>
     );

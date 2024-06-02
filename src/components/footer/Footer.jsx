@@ -9,7 +9,9 @@ const Footer = () => {
         <div className=" flex  justify-center mt-40  w-screen text-gray-600 md:flex-row flex-col md:gap-0 gap-4 pb-2">
             <div className="flex-1 text-center flex flex-col items-center">
                 <h1 className="text-xs md:text-lg font-bold"> Mu$!ng$ </h1>
-                <p className="md:w-[400px] md:text-xs text-[8px] md:my-2 my-1 w-[200px] md:pl-24"> Lorem ipsum doloripsum amet dolor dolor amet dolor c sit quaerat nemo earum voluptates</p>
+                <p className="md:w-[400px] md:text-xs text-[8px] md:my-2 my-1 w-[200px] md:pl-24"> 
+                    Discover, create, and connect: Dive into our blogs or start writing your own today.
+                </p>
 
                 <div className="md:flex gap-2 hidden ">
                     <Link href="https://linkedin.com">  <IoLogoLinkedin/></Link>
@@ -24,9 +26,9 @@ const Footer = () => {
                 <div className="flex flex-col md:text-[10px] text-[8px] gap-[2px] md:gap-[6px]">
                     <p className="font-semibold md:text-xs text-[10px]">Links</p>
                     <Link href="/"> Homepage</Link>
-                    <Link href="/"> Blog </Link>
-                    <Link href="/"> Contact </Link>
-                    <Link href="/"> About </Link>   
+                    <Link href="/blog"> Blog </Link>
+                    <Link href="/write"> Write </Link>
+                    <Link href="/about"> About </Link>   
                 </div>
 
                 <div className="flex flex-col md:text-[10px] text-[8px] gap-[2px] md:gap-[6px]">
@@ -39,10 +41,10 @@ const Footer = () => {
 
                 <div className="flex flex-col md:text-[10px] text-[8px] gap-[2px] md:gap-[6px]">
                     <p className="font-semibold text-[10px] ">Social</p>
-                    <Link href="/"> Linkedin </Link>
-                    <Link href="/"> Github </Link>
-                    <Link href="/"> Instagram </Link>
-                    <Link href="/"> Facebook </Link>  
+                    <Link href="https://linkedin.com"> Linkedin </Link>
+                    <Link href="https://github.com"> Github </Link>
+                    <Link href="https://instagram.com"> Instagram </Link>
+                    <Link href="https://facebook.com"> Facebook </Link>  
                 </div>
                 </div>
 

@@ -10,7 +10,7 @@ const MenuItems = async ({withImg}) =>{
     return(
         <div className="flex flex-col gap-1">
         
-            {posts && posts.map((item, idx) =>(  
+            {posts && posts.filter((item) => item.views > 2 ).map((item, idx) =>(  
                 <Link href={`/posts/${item.slug}`}  key={item.id}>
                     <div className="flex items-center gap-2">  
                         {withImg && 

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Comments from "@/components/blogPage/Comments";
 import DeletePostBtn from "@/components/blogPage/DeletePostBtn";
+import Footer from "@/components/footer/Footer";
 
 const GetData = async(slug) => {
     const res = await fetch(`http://localhost:3000/api/posts/${slug}`, {
@@ -36,15 +37,17 @@ const SingeBlog = async({params}) =>{
                 </div>
             </div>
 
-            <div className="md:w-[400px] w-[300px] h-max ">
-                <Image src={data? data.img : "/wrong-icon.png"} width={600} height={600} alt="post-img" priority={true}/>
-            </div>
+            {data?.img? (<div className="md:w-[400px] w-[300px] h-max ">
+                <Image src={data?.img } width={600} height={600} alt="post-img" priority={true}/>
+            </div>) : null}
+
         </div>
 
         <DeletePostBtn slug={slug}/>
 
-        <div dangerouslySetInnerHTML={{__html: data?.desc || ''}} className="m-auto pt-12 md:w-2/3 w-[280px] "/>
+        <div dangerouslySetInnerHTML={{__html: data?.desc || ''}} className="m-auto md:pt-12 pt-2 md:w-2/3 w-[280px] "/>
         <Comments postSlug= {slug}/>
+        <Footer />
         </div>
     );
 }

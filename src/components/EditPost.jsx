@@ -62,7 +62,6 @@ const EditPost = ({ slug }) => {
                 },
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                        console.log('File available at', downloadURL);
                         setImgUploadTxt("Image uploaded successfully!");
                         setIsDialogboxOpen(true);
                         setMedia(downloadURL);
@@ -145,17 +144,19 @@ const EditPost = ({ slug }) => {
                 <ReactQuill theme="bubble" value={value} onChange={setValue} placeholder="Tell your story.." />
             </div>
 
-            <button className="bg-[#1a8917] rounded-lg p-2 text-xs text-white absolute top-12 right-3 md:right-[-150px]"
+            <button className="bg-[#1a8917] rounded-lg p-2 text-xs text-white absolute top-8 right-3 md:right-[-150px]"
                 onClick={handleSubmit}>
                 Update
             </button>
 
+            <div className="md:inline-block hidden">
             <Modals isDialogboxOpen={isDialogboxOpen} onRequestClose={() => (setIsDialogboxOpen(false),
                 setDialogBoxValue(" "))} showCloseBtn={true}>
                 <h1 className="py-1 text-green-800 font-semibold text-base">
                     {dialogBoxValue ? dialogBoxValue : imgUploadTxt}
                 </h1>
             </Modals>
+            </div>
         </div>
     );
 }
