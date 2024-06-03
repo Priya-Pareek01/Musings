@@ -10,7 +10,6 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { app } from "@/utils/firebase";
-import { useCategoryItems } from "@/components/hooks/useCategoryItems";
 import Modals from "@/components/Modals";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -32,13 +31,30 @@ const Write = () =>{
     const [dialogBoxValue, setDialogBoxValue] = useState(null);
     const [imgUploadTxt, setImgUploadTxt] = useState(null);
 
-    useEffect(() =>{
-        async function fetchData() {
-            const cat = await useCategoryItems();
+    // useEffect(() => {
+    //     const FetchData = async() =>{
+    //         const cat = await useCategoryItems();
+    //         setCategories(cat);
+    //     }
+    //     FetchData();
+    // }, []);
+
+    const GetCategoryItems = async() =>{
+        const res = await fetch("http://localhost:3000/api/categories", 
+            {cache:"no-store"});
+        if(!res.ok){
+            console.error("failed");
+        }
+        return res.json();
+    }
+
+    useEffect(() => {
+        const Get = async() =>{
+            const cat = await GetCategoryItems();
             setCategories(cat);
         }
-          fetchData();
-    },[])
+        Get();
+    }, []);
 
         
     useEffect(() =>{
@@ -119,7 +135,7 @@ const Write = () =>{
                         -Select category-
                     </option>
                 {categories && categories.map((item) => (
-                    <option key={item?._id} value={item?.slug} > {item.slug} </option>
+                    <option key={item?.id} value={item?.slug} > {item.slug} </option>
                 ))}
             </select>
 
