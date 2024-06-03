@@ -16,7 +16,7 @@ const CardList = async({page, cat}) =>{
 
            <div className="flex flex-col gap-0">
            {posts && Array.isArray(posts) && posts.map((item) => (
-               <Card id={item.id} item={item} />
+               <Card key={item.id} item={item} />
            ))}
            <Pagination page={page} hasPrev={hasprev} hasNext={hasNext}/>
            </div>

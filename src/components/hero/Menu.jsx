@@ -10,7 +10,7 @@ const Menu = async({isAdd }) =>{
 
     return(
         <div className="w-fit md:inline-block hidden"> 
-            <h3 className="text-gray-500 text-xs "> What's hot! </h3>
+            <h3 className="text-gray-500 text-xs "> What&apos;s hot! </h3>
             <h1 className="font-semibold text-base pb-2"> Most popular </h1>
             <MenuItems withImg={true}/>
 

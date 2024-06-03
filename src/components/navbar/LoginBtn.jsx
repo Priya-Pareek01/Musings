@@ -14,10 +14,10 @@ const LoginBtn = () =>{
         
         <>
             {status==="unauthenticated" ? (
-                <Link href="/login"  className= "md:inline-block hidden"> Login </Link>
+                    <Link href="/login"  className= "md:inline-block hidden">  Login </Link>
             ) : ( 
                 <>
-                <Link href="/write" className= "md:inline-block hidden"> Write </Link>
+                <Link href="/write" className= "md:inline-block hidden"> Write </Link> 
                 <Link href="/login" className= "md:inline-block hidden"
                     onClick={signOut}> LogOut</Link>
                 </>
@@ -37,15 +37,15 @@ const LoginBtn = () =>{
             {open && 
                 <div className= {`absolute w-screen h-[100%] flex gap-6 flex-col top-[80px] z-10
                     ${theme==="light"? 'bg-white text-[#050d1c]' : (theme ==="dark"? 'bg-[#050d1c] text-white': 'bg-white text-[#050d1c]')} left-0  items-center pt-20 text-2xl `}> 
-                    <Link href="/"> <li> Homepage </li> </Link>
-                    <Link href='/blog'> <li> Blog </li> </Link>
-                    <Link href='/about'> <li> About </li> </Link>
+                    <Link href="/" onClick={() => setOpen(false)}> <li> Homepage </li> </Link>
+                    <Link href='/blog' onClick={() => setOpen(false)}> <li> Blog </li> </Link>
+                    <Link href='/about' onClick={() => setOpen(false)}> <li> About </li> </Link>
 
                     {status==="unauthenticated" ? (
-                    <Link href="/login"> Login </Link>
+                    <Link href="/login" onClick={() => setOpen(false)}> Login </Link>
                     ) : (
                     <>
-                    <Link href="/write"> Write </Link>
+                    <Link href="/write" onClick={() => setOpen(false)}> Write </Link>
                     <Link href="/" onClick={signOut}> LogOut</Link>
                     </>
                     )}

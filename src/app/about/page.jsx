@@ -13,7 +13,7 @@ const About = () =>{
                     </p>
 
                     <p className="pt-8 text-base pb-4 ">
-                    <span className="font-semibold text-xl">Hi, I'm Priya </span>, the founder and editor of Musings. With a background in 
+                    <span className="font-semibold text-xl">Hi, It&apos;s Priya </span>, the founder and editor of Musings. With a background in 
                     computer science I have always been fascinated by the power of conversations 
                     and the insights they can reveal. <span className="md:inline-block hidden"> Through this blog, I strive to share meaningful 
                     stories that inspire and inform. </span>

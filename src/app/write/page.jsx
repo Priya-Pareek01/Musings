@@ -33,11 +33,11 @@ const Write = () =>{
     const [imgUploadTxt, setImgUploadTxt] = useState(null);
 
     useEffect(() =>{
-        const fetchcategories = async()=>{
-            const cat =  await useCategoryItems();
+        async function fetchData() {
+            const cat = await useCategoryItems();
             setCategories(cat);
         }
-        fetchcategories();
+          fetchData();
     },[])
 
         
@@ -75,7 +75,7 @@ const Write = () =>{
 
         if (file) Upload();
 
-    }, [file])
+    }, [file, storage])
 
     const handleSubmit= async() =>{
         const res = await fetch("/api/posts", {

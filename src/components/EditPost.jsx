@@ -72,7 +72,7 @@ const EditPost = ({ slug }) => {
 
         if (file) Upload();
 
-    }, [file]);
+    }, [file, storage]);
 
     const handleSubmit = async () => {
         const res = await fetch(`/api/posts/${slug}`, {

@@ -6,11 +6,11 @@ const truncateHtmlContent = (html, maxLength) => {
     return htmlTruncate(html, maxLength, { ellipsis: '...' });
 };
 
-const Card = ({id, item}) =>{
+const Card = ({item}) =>{
     const truncatedDesc = truncateHtmlContent(item?.desc || '', 100);
     return(
         <Link href={`/posts/${item.slug}`} >
-        <div className= 'flex relative md:flex-row flex-col mb-10 items-center justify-center gap-1 md:gap-6' key={id} >
+        <div className= 'flex relative md:flex-row flex-col mb-10 items-center justify-center gap-1 md:gap-6'>
             {item?.img? (<div> 
                 <Image src={item?.img} alt="posts" width={300} height={300} priority={true}/>  
             </div>) : null}
