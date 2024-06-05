@@ -3,9 +3,10 @@
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { FaEdit } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import { BASE_API_URL } from "@/utils/constants";
 
 const deleteData = async (slug) => {
-  const res = await fetch(`http://localhost:3000/api/posts/${slug}`, {
+  const res = await fetch(`${BASE_API_URL}/api/posts/${slug}`, {
     method: "DELETE",
   });
 

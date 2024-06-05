@@ -2,9 +2,10 @@ import Image from "next/image";
 import Comments from "@/components/blogPage/Comments";
 import DeletePostBtn from "@/components/blogPage/DeletePostBtn";
 import Footer from "@/components/footer/Footer";
+import { BASE_API_URL } from "@/utils/constants";
 
 const GetData = async(slug) => {
-    const res = await fetch(`http://localhost:3000/api/posts/${slug}`, {
+    const res = await fetch(`${BASE_API_URL}/api/posts/${slug}`, {
         cache: "no-store",
     });
     if(!res.ok){

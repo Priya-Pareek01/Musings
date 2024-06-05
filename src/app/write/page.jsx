@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { app } from "@/utils/firebase";
 import Modals from "@/components/Modals";
+import { BASE_API_URL } from "@/utils/constants";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -31,16 +32,8 @@ const Write = () =>{
     const [dialogBoxValue, setDialogBoxValue] = useState(null);
     const [imgUploadTxt, setImgUploadTxt] = useState(null);
 
-    // useEffect(() => {
-    //     const FetchData = async() =>{
-    //         const cat = await useCategoryItems();
-    //         setCategories(cat);
-    //     }
-    //     FetchData();
-    // }, []);
-
     const GetCategoryItems = async() =>{
-        const res = await fetch("http://localhost:3000/api/categories", 
+        const res = await fetch(`${BASE_API_URL}/api/categories`, 
             {cache:"no-store"});
         if(!res.ok){
             console.error("failed");

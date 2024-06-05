@@ -1,5 +1,6 @@
 "use client"
 
+import { BASE_API_URL } from "@/utils/constants";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,7 +22,7 @@ const Comments = ({postSlug}) =>{
     const [desc, setDesc] = useState("");
     const [textareaValue, setTextareaValue] = useState("");
 
-    const {data, mutate, isLoading}  = useSWR(`http://localhost:3000/api/comments?postSlug=${postSlug}`,
+    const {data, mutate, isLoading}  = useSWR(`${BASE_API_URL}/api/comments?postSlug=${postSlug}`,
         fetcher
     )
    

@@ -1,5 +1,7 @@
+import { BASE_API_URL } from "@/utils/constants";
+
 export const usePosts = async(page, cat) =>{
-    const res = await fetch(`http://localhost:3000/api/posts?page=${page}&cat=${cat || ""}`,
+    const res = await fetch(`${BASE_API_URL}/api/posts?page=${page}&cat=${cat || ""}`,
     {cache:"no-store"});
         if(!res.ok){
             console.error ("failed");
