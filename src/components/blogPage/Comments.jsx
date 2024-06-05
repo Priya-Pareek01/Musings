@@ -21,9 +21,8 @@ const Comments = ({postSlug}) =>{
     const {status} = useSession();
     const [desc, setDesc] = useState("");
     const [textareaValue, setTextareaValue] = useState("");
-    if(!BASE_API_URL) return null;
-
-    const {data, mutate, isLoading}  = useSWR(`${BASE_API_URL}/api/comments?postSlug=${postSlug}`,
+    
+    const {data, mutate, isLoading}  = useSWR(`/api/comments?postSlug=${postSlug}`,
         fetcher
     )
    
