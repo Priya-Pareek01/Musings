@@ -7,8 +7,9 @@ const linkColors = ['bg-pink-300', 'bg-green-300', 'bg-blue-300', 'bg-yellow-300
 const MenuItems = async ({withImg}) =>{
     const result = await usePosts(1);
 
-    if(!result) return null;
+    if(result) {
     const {posts} = await usePosts(1);
+    }
  
     return(
         <div className="flex flex-col gap-1">
