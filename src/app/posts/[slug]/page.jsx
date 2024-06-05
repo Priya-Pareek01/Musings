@@ -5,6 +5,7 @@ import Footer from "@/components/footer/Footer";
 import { BASE_API_URL } from "@/utils/constants";
 
 const GetData = async(slug) => {
+    
     const res = await fetch(`${BASE_API_URL}/api/posts/${slug}`, {
         cache: "no-store",
     });

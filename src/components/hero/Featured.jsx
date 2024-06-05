@@ -8,6 +8,9 @@ const truncateHtmlContent = (html, maxLength) => {
 };
 
 const Featured = async() =>{
+    const result = await usePosts(1, "culture");
+
+    if(!result) return null;
     const {posts} = await usePosts(1, "culture");
      
     return(

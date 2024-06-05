@@ -3,6 +3,11 @@ import Card from "./Card";
 import { usePosts } from "../hooks/usePosts";
 
 const CardList = async({page, cat}) =>{
+
+    const result = await usePosts(page, cat);
+
+    if(!result) return null;
+     
     const {posts, count} = await usePosts(page, cat);
 
     const post_per_page = 4;
