@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { BASE_API_URL } from "@/utils/constants";
 
 const deleteData = async (slug) => {
+  if(!BASE_API_URL) return null;
   const res = await fetch(`${BASE_API_URL}/api/posts/${slug}`, {
     method: "DELETE",
   });
