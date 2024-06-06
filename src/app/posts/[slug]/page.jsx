@@ -48,7 +48,7 @@ const SingeBlog = async({params}) =>{
         <DeletePostBtn slug={slug}/>
 
         <div dangerouslySetInnerHTML={{__html: data?.desc || ''}} className="m-auto md:pt-12 pt-2 md:w-2/3 w-[280px] "/>
-        {/* <Comments postSlug= {slug}/> */}
+        <Comments postSlug= {slug}/>
         <Footer />
         </div>
     );

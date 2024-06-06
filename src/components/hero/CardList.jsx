@@ -2,19 +2,12 @@ import Pagination from "./Pagination";
 import Card from "./Card";
 import { usePosts } from "../hooks/usePosts";
 
-const CardList = async({page, cat}) =>{
-
-    const result = await usePosts(page, cat);
-
-    if(result) {
-     
+const CardList = async({page, cat}) =>{   
     const {posts, count} = await usePosts(page, cat);
 
     const post_per_page = 4;
     const hasprev = post_per_page * (page-1) > 0;
     const hasNext = post_per_page * (page-1) + post_per_page < count;
-
-    }
 
     return(
         <div className="w-fit lg:pl-[220px] sm:pl-16 md:pr-6 md:m-0 m-auto"> 
