@@ -21,7 +21,7 @@ const SingeBlog = async({params}) =>{
     
     return (
         <div className="w-screen ">
-        <div className="flex justify-center md:mt-14 mt-8 md:flex-row flex-col items-center "> 
+        <div className="flex justify-center md:mt-14 mt-8 md:flex-row flex-col items-center gap-3 "> 
 
             <div className=" flex flex-col md:w-[350px] md:px-0 px-10">
                 <p className="font-semibold md:text-3xl text-2xl pb-5 pt-8 leading-8 md:leading-10 w-[250px] md:w-[350px] ">
