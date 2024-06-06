@@ -8,8 +8,13 @@ const truncateHtmlContent = (html, maxLength) => {
 };
 
 const Featured = async() =>{
-    const {posts} = await usePosts(1, "culture");
-    
+    const result = usePosts(1, "culture");
+
+    if(result===null || result === undefined){
+        return null;
+    }
+        const {posts} = await usePosts(1, "culture");
+   
     return(
         <div className='flex flex-col items-center w-screen m-auto'>
             <div> 
