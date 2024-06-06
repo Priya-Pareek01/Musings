@@ -10,7 +10,7 @@ const CardList = async({page, cat}) =>{
         return null;
     } 
      
-    const {posts, count} = await usePosts(page, cat);
+    const {posts, count} = result;
 
     const post_per_page = 4;
     const hasprev = post_per_page * (page-1) > 0;

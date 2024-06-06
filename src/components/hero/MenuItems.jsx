@@ -9,7 +9,7 @@ const MenuItems = async ({withImg}) =>{
     if(result===null || result === undefined){
         return null;
     }
-        const {posts} = await usePosts(1);
+        const {posts} = result;
     
     return(
         <div className="flex flex-col gap-1">
