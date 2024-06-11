@@ -14,7 +14,7 @@ const CategoryList = async() => {
                 {data && Array.isArray(data) && data.map((item, index) => (
                     <Link href={`/blog?cat=${item.title}`} key={item.id}
                         className={`${linkColors[index]} p-4 px-6 rounded-lg flex gap-2 justify-center w-[100%] sm:w-[15%]`}>
-                        <Image src="/style1.png" alt={item.title} width={20} height={20} priority={true} className="rounded-[50%]"></Image>
+                        <Image src={`${item.img}`} alt={item.title} width={20} height={20} priority={true} className="rounded-[50%]"></Image>
                         <h2 className="capitalize font-semibold text-xs"> {item.title} </h2>
                     </Link>
                 ))}
