@@ -23,7 +23,7 @@ const Card = ({item}) =>{
                     {item.title}
                 </h1>
 
-                <div dangerouslySetInnerHTML={{ __html: truncatedDesc }} className='mb-3 md:inline-block text-xs ' />
+                <div dangerouslySetInnerHTML={{ __html: truncatedDesc }} className='mb-3 md:inline-block text-xs w-' />
 
                 <button className="border-b-[1px] pb-[2px] border-gray-400 md:text-xs text-[8px] w-[70px]">
                      Read more..
