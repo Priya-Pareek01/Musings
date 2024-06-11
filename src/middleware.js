@@ -8,7 +8,7 @@ export async function middleware(req) {
         return NextResponse.error(new Error("Request URL pathname is undefined"));
     }
 
-    const authToken = req.cookies.get("next-auth.session-token")?.value;
+    const authToken = req.cookies.get("__Secure-next-auth.session-token")?.value;
 
     if (!authToken && pathname.startsWith('/posts/')) {
         return NextResponse.redirect(new URL("/login", req.url));
