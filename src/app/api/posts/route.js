@@ -26,7 +26,7 @@ export const GET = async (req) => {
     const { searchParams } = new URL(req.url);
     const page = parseInt(searchParams.get("page") || "1", 10);
     const cat = searchParams.get("cat");
-    const post_per_page = 4;
+    const post_per_page = 6;
 
     const trimmedCat = cat ? cat.trim() : null;
 

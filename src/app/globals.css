@@ -25,17 +25,17 @@ body{
 .logoName{
   font-weight: 700;
   font-size : 25px;
-  padding-left: 16px;
+  padding-left: 22px;
   padding-top: 8px;
-  color: #2c0424d4;
+  color: #35042bd4;
 }
 
 .light .logoName {
   font-weight: 700;
   font-size : 25px;
-  padding-left: 16px;
+  padding-left: 22px;
   padding-top: 8px;
-  color: #2c0424d4;
+  color: #35042bd4;
 }
 
 .dark .logoName{

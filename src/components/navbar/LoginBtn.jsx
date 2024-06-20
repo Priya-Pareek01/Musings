@@ -14,11 +14,11 @@ const LoginBtn = () =>{
         
         <>
             {status==="unauthenticated" ? (
-                    <Link href="/login"  className= "md:inline-block hidden">  Login </Link>
+                    <Link href="/login" className= "md:inline-block hidden font-semibold hover:text-amber-600 text-[16px]">  Login </Link>
             ) : ( 
                 <>
-                <Link href="/write" className= "md:inline-block hidden"> Write </Link> 
-                <Link href="/login" className= "md:inline-block hidden"
+                <Link href="/write" className= "md:inline-block hidden font-semibold hover:text-amber-600 text-[16px]"> Write </Link> 
+                <Link href="/login" className= "md:inline-block hidden font-semibold hover:text-amber-600 text-[16px]"
                     onClick={signOut}> LogOut</Link>
                 </>
             )}
@@ -37,16 +37,19 @@ const LoginBtn = () =>{
             {open && 
                 <div className= {`absolute w-screen h-[100%] flex gap-6 flex-col top-[80px] z-10
                     ${theme==="light"? 'bg-white text-[#050d1c]' : (theme ==="dark"? 'bg-[#050d1c] text-white': 'bg-white text-[#050d1c]')} left-0  items-center pt-20 text-2xl `}> 
-                    <Link href="/" onClick={() => setOpen(false)}> <li> Homepage </li> </Link>
-                    <Link href='/blog' onClick={() => setOpen(false)}> <li> Blog </li> </Link>
-                    <Link href='/about' onClick={() => setOpen(false)}> <li> About </li> </Link>
+                    <Link href="/" onClick={() => setOpen(false)} className="font-semibold hover:text-amber-700 text-[16px]"> 
+                        <li> Homepage </li> </Link>
+                    <Link href='/blog' onClick={() => setOpen(false)} className="font-semibold hover:text-amber-700 text-[16px]"> 
+                        <li> Blog </li> </Link>
+                    <Link href='/about' onClick={() => setOpen(false)} className="font-semibold hover:text-amber-700 text-[16px]"> 
+                        <li> About </li> </Link>
 
                     {status==="unauthenticated" ? (
-                    <Link href="/login" onClick={() => setOpen(false)}> Login </Link>
+                    <Link href="/login" onClick={() => setOpen(false)} className="font-semibold hover:text-amber-700 text-[16px]"> Login </Link>
                     ) : (
                     <>
-                    <Link href="/write" onClick={() => setOpen(false)}> Write </Link>
-                    <Link href="/" onClick={signOut}> LogOut</Link>
+                    <Link href="/write" onClick={() => setOpen(false)} className="font-semibold hover:text-amber-700 text-[16px]"> Write </Link>
+                    <Link href="/" onClick={signOut} className="font-semibold hover:text-amber-700 text-sm"> LogOut</Link>
                     </>
                     )}
                 </div>

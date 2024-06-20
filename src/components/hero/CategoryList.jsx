@@ -4,18 +4,16 @@ import { useCategoryItems } from "../hooks/useCategoryItems";
 
 const CategoryList = async() => {  
    const data = await useCategoryItems();
-    const linkColors = ['bg-[#da85c731]', 'bg-[#57c4ff31]', 'bg-[#7fb88133]', 'bg-[#ff795736]', 'bg-[#ffb04f45]', 'bg-[#5e4fff31]'];
-
     return(
-        <div className='flex flex-col items-center w-screen m-auto mb-16'>
-            <h1 className="font-bold text-center my-7 text-base md:text-xl"> Popular Catagories </h1>
-            <div className="flex gap-6 justify-center flex-wrap md:flex-nowrap text-base md:text-xs font-semibold md:mx-0 mx-14" >
-
+        <div className='w-screen md:my-20 my-12'>
+            <div className="grid md:grid-cols-3 md:gap-6 gap-8 md:mx-20" >
                 {data && Array.isArray(data) && data.map((item, index) => (
                     <Link href={`/blog?cat=${item.title}`} key={item.id}
-                        className={`${linkColors[index]} p-4 px-6 rounded-lg flex gap-2 justify-center w-[100%] sm:w-[15%]`}>
-                        <Image src={`${item.img}`} alt={item.title} width={20} height={20} priority={true} className="rounded-[50%]"></Image>
-                        <h2 className="capitalize font-semibold text-xs"> {item.title} </h2>
+                        className={"relative flex justify-center"}>
+                        <Image src={`${item.img}`} alt={item.title} width={310} height={310} priority={true} className="opacity-90"></Image>
+                        <h2 className="capitalize font-semibold text-lg absolute bg-white
+                             text-blue-600 md:py-2 py-4 px-10 md:top-[75px] top-14 hover:bg-blue-600
+                            hover:text-white transition duration-400 ease-in-out"> {item.title} </h2>
                     </Link>
                 ))}
 
