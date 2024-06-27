@@ -12,6 +12,7 @@ import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/
 import { app } from "@/utils/firebase";
 import Modals from "@/components/Modals";
 import { BASE_API_URL } from "@/utils/constants";
+import uploadImage from "@/utils/uploadImage";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -50,41 +51,58 @@ const Write = () =>{
     }, []);
 
         
-    useEffect(() =>{
-        const Upload = () => { 
-            const name = new Date().getTime() + file.name;
-            const storageRef = ref(storage, name);
+    // useEffect(() =>{
+    //     const Upload = () => { 
+    //         const name = new Date().getTime() + file.name;
+    //         const storageRef = ref(storage, name);
         
-            const uploadTask = uploadBytesResumable(storageRef, file);
+    //         const uploadTask = uploadBytesResumable(storageRef, file);
         
-            uploadTask.on('state_changed', 
-            (snapshot) => {
-                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                switch (snapshot.state) {
-                    case 'paused':
-                        console.log('Upload is paused');
-                     break;
-                    case 'running':
-                        console.log('Upload is running');
-                    break;
-                }
-            }, 
-            (error) => {
-                console.error('Upload error:', error);
-            }, 
-                () => {
-                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                        setImgUploadTxt("Image uploaded successfully!");
-                        setIsDialogboxOpen(true);
-                        setMedia(downloadURL);
-                });
+    //         uploadTask.on('state_changed', 
+    //         (snapshot) => {
+    //             const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    //             switch (snapshot.state) {
+    //                 case 'paused':
+    //                     console.log('Upload is paused');
+    //                  break;
+    //                 case 'running':
+    //                     console.log('Upload is running');
+    //                 break;
+    //             }
+    //         }, 
+    //         (error) => {
+    //             console.error('Upload error:', error);
+    //         }, 
+    //             () => {
+    //                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+    //                     setImgUploadTxt("Image uploaded successfully!");
+    //                     setIsDialogboxOpen(true);
+    //                     setMedia(downloadURL);
+    //             });
+    //         }
+    //         );
+    //     };
+
+    //     if (file) Upload();
+
+    // }, [file, storage])
+
+
+    useEffect(() => {
+        if (file) {
+          uploadImage(
+            file,
+            (progress) => setUploadProgress(progress),
+            (error) => console.error('Upload error:', error),
+            (downloadURL) => {
+              setMedia(downloadURL);
+              setIsDialogboxOpen(true);
+              setDialogBoxValue('Image uploaded successfully!');
             }
-            );
-        };
-
-        if (file) Upload();
-
-    }, [file, storage])
+          );
+        }
+      }, [file]);
+    
 
     const handleSubmit= async() =>{
         const res = await fetch("/api/posts", {
